@@ -1,33 +1,41 @@
 $(document).ready(function () {
   window._token = $('meta[name="csrf-token"]').attr('content')
 
-  var allEditors = document.querySelectorAll('.ckeditor');
-  for (var i = 0; i < allEditors.length; ++i) {
-    ClassicEditor.create(
-        allEditors[i],
-        {
-            removePlugins: ['ImageUpload']
-        }
-    );
-  }
-
   moment.updateLocale('en', {
     week: {dow: 1} // Monday is the first day of the week
   })
 
   $('.date').datetimepicker({
     format: 'YYYY-MM-DD',
-    locale: 'en'
+    locale: 'en',
+    icons: {
+      up: 'fas fa-chevron-up',
+      down: 'fas fa-chevron-down',
+      previous: 'fas fa-chevron-left',
+      next: 'fas fa-chevron-right'
+    }
   })
 
   $('.datetime').datetimepicker({
     format: 'YYYY-MM-DD HH:mm:ss',
     locale: 'en',
-    sideBySide: true
+    sideBySide: true,
+    icons: {
+      up: 'fas fa-chevron-up',
+      down: 'fas fa-chevron-down',
+      previous: 'fas fa-chevron-left',
+      next: 'fas fa-chevron-right'
+    }
   })
 
   $('.timepicker').datetimepicker({
-    format: 'HH:mm:ss'
+    format: 'HH:mm:ss',
+    icons: {
+      up: 'fas fa-chevron-up',
+      down: 'fas fa-chevron-down',
+      previous: 'fas fa-chevron-left',
+      next: 'fas fa-chevron-right'
+    }
   })
 
   $('.select-all').click(function () {
@@ -53,5 +61,11 @@ $(document).ready(function () {
     if (shouldExpand) {
       $(this).addClass('active')
     }
+  })
+
+$('button.sidebar-toggler').click(function () {
+    setTimeout(function() {
+      $($.fn.dataTable.tables(true)).DataTable().columns.adjust();
+    }, 275);
   })
 })
